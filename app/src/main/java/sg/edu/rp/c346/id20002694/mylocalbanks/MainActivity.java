@@ -3,6 +3,7 @@ package sg.edu.rp.c346.id20002694.mylocalbanks;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     TextView bankOCBC;
     TextView bankUOB;
     String clicked="";
+    boolean favDBS=false;
+    boolean favOCBC=false;
+    boolean favUOB=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         menu.add(0,0,0,"Website");
         menu.add(0,1,1,"Contact the bank");
+        menu.add(0,2,2,"Toggle as Favorite");
 
         if(v==bankDBS){
             clicked= "dbs";
@@ -68,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;  //menu item successfully handled
             }
+            else if(item.getItemId()==2) { //contact
+                if(favDBS==false){
+                    bankDBS.setTextColor(Color.parseColor("#FF0000")); //red
+                    favDBS=true;
+                }
+                else{
+                    bankDBS.setTextColor(Color.parseColor("#000000"));
+                }
+
+                return true;  //menu item successfully handled
+            }
         }
         else if(clicked.equalsIgnoreCase("ocbc")){
             if(item.getItemId()==0) { //website
@@ -85,6 +101,17 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;  //menu item successfully handled
             }
+            else if(item.getItemId()==2) { //contact
+                if(favOCBC==false){
+                    bankOCBC.setTextColor(Color.parseColor("#FF0000")); //red
+                    favOCBC=true;
+                }
+                else{
+                    bankOCBC.setTextColor(Color.parseColor("#000000"));
+                }
+
+                return true;  //menu item successfully handled
+            }
         }
         else if(clicked.equalsIgnoreCase("uob")){
             if(item.getItemId()==0) { //website
@@ -99,6 +126,17 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(Intent. ACTION_DIAL, Uri.parse("tel:"+1800+2222121));
                 startActivity(intent);
+
+                return true;  //menu item successfully handled
+            }
+            else if(item.getItemId()==2) { //contact
+                if(favUOB==false){
+                    bankUOB.setTextColor(Color.parseColor("#FF0000")); //red
+                    favUOB=true;
+                }
+                else{
+                    bankUOB.setTextColor(Color.parseColor("#000000"));
+                }
 
                 return true;  //menu item successfully handled
             }
